@@ -428,4 +428,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
+
+    // FORM SUBMISSION HANDLER
+    const form = document.getElementById('uploadForm');
+    if (form) {
+        form.addEventListener('submit', function (e) {
+            const fileInput = document.getElementById('pdf_file');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                e.preventDefault();
+                alert("⚠️ Please select a PDF file first!");
+                return;
+            }
+
+            // Show loading state on button
+            const btn = document.querySelector('.download-btn');
+            const originalText = btn.textContent;
+            btn.textContent = "⏳ Processing...";
+            btn.style.opacity = "0.7";
+            btn.style.pointerEvents = "none"; // Prevent double click
+
+            // Re-enable after short delay in case download starts or fails silently (since it's a form post)
+            // Ideally we'd use fetch/blob for download to know exactly when it finishes, 
+            // but for a simple form post, a timeout reset is a common graceful fallback.
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.opacity = "1";
+                btn.style.pointerEvents = "auto";
+            }, 3000);
+        });
+    }
 });
