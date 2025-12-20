@@ -586,4 +586,15 @@ body {
         gap: 8px;
         padding: 12px;
     }
+
+    /* Fix Logo Overlap */
+    .logo {
+        position: static;
+        margin-bottom: 10px;
+        max-height: 60px;
+    }
+
+    .header {
+        padding-top: 20px;
+    }
 }
