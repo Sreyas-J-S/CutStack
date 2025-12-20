@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CutStack Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=2) }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ url_for('static', filename='logo.png') }}" alt="CutStack Logo" class="logo">
+            <h1>🎯 CutStack</h1>
+            <p>Interactive Visualization and PDF Generator</p>
+        </div>
+
+        <form action="/process" method="post" enctype="multipart/form-data">
+            <div class="controls">
+                <div class="control-grid">
+                    <div class="control-item">
+                        <label>Upload PDF File</label>
+                        <div class="file-drop-zone" id="dropZone">
+                            <input type="file" name="pdf_file" id="pdf_file" class="file-input-hidden" accept=".pdf"
+                                required>
+                            <div class="drop-zone-content">
+                                <span class="drop-icon">📂</span>
+                                <span class="drop-text">Drag & Drop PDF here</span>
+                                <span class="drop-subtext">or click to browse</span>
+                            </div>
+                        </div>
+                        <small>Select the document to impose</small>
+                    </div>
+
+                    <div class="control-item">
+                        <label for="pagesPerSheet">Pages Per Sheet (One Side)</label>
+                        <select id="pagesPerSheet" name="pages_per_sheet_n" class="form-select">
+                            <option value="1">1 (Full Page)</option>
+                            <option value="2">2 (1×2)</option>
+                            <option value="4" selected>4 (2×2)</option>
+                            <option value="6">6 (2×3)</option>
+                            <option value="8">8 (2×4)</option>
+                            <option value="9">9 (3×3)</option>
+                            <option value="10">10 (2×5)</option>
+                            <option value="12">12 (3×4)</option>
+                            <option value="15">15 (3×5)</option>
+                            <option value="16">16 (4×4)</option>
+                            <option value="20">20 (4×5)</option>
+                            <option value="24">24 (4×6)</option>
+                            <option value="25">25 (5×5)</option>
+                            <option value="30">30 (5×6)</option>
+                            <option value="32">32 (4×8)</option>
+                            <option value="36">36 (6×6)</option>
+                        </select>
+                        <!-- Hidden input to send "Pages Per Side" to backend -->
+                        <input type="hidden" name="n_up" id="hidden_n_up" value="4">
+                        <small>Number of pages on front side (N-Up)</small>
+                    </div>
+
+                    <div class="control-item" style="display:none;">
+                        <label for="pageInput">Input Pages (Detected)</label>
+                        <input type="number" id="pageInput" value="0" min="1" max="500" readonly
+                            style="background-color: #f3f4f6; cursor: default;">
+                        <small>Number of pages in uploaded PDF</small>
+                    </div>
+
+                    <div class="control-item">
+                        <label for="layoutMode">Layout Mode</label>
+                        <select id="layoutMode" class="form-select">
+                            <option value="print-safe">Print-Safe (with margins)</option>
+                            <option value="compact">Compact (edge-to-edge)</option>
+                        </select>
+                        <small>Affects cell spacing in visualization</small>
+                    </div>
+                </div>
+
+                <div class="preset-buttons" style="margin-top: 20px;">
+                    <button type="button" class="preset-btn" onclick="setConfig(4, 0)">2×2 (4-Up)</button>
+                    <button type="button" class="preset-btn" onclick="setConfig(9, 0)">3×3 (9-Up)</button>
+                    <button type="button" class="preset-btn" onclick="setConfig(16, 0)">4×4 (16-Up)</button>
+                    <button type="button" class="preset-btn" onclick="setConfig(25, 0)">5×5 (25-Up)</button>
+                    <button type="button" class="preset-btn" onclick="setConfig(36, 0)">6×6 (36-Up)</button>
+                </div>
+            </div>
+    </div>
+
+    <div class="action-buttons">
+        <button type="button" class="generate-btn" onclick="generateImposition()">🚀 Refresh
+            Visualization</button>
+        <button type="submit" class="download-btn">📥 Download Imposed PDF</button>
+    </div>
+
+    <div id="pageCountDisplay" class="page-count-display"></div>
+    </div>
+    </form>
+
+    <div class="stats" id="stats"></div>
+
+    <div class="cutting-guide">
+        <h3>✂️ Cutting Instructions</h3>
+        <p>
+            After duplex printing, cut the sheet along the grid lines (between columns and rows).
+            Each resulting stack will have pages in perfect sequential order with odd pages on front
+            and even pages on back. For example, cutting a 4-column sheet produces 4 stacks, each
+            maintaining proper page pairing.
+        </p>
+    </div>
+
+    <div class="visualization" id="visualization"></div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-box odd"></div>
+            <div class="legend-text">Odd Pages (Front Side)</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box even"></div>
+            <div class="legend-text">Even Pages (Back Side)</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-box blank"></div>
+            <div class="legend-text">Blank Padding</div>
+        </div>
+    </div>
+
+    <div class="info-panel">
+        <h3>📋 Instructions</h3>
+        <ul>
+            <li><strong>1. Upload PDF:</strong> Select the PDF file you want to process.</li>
+            <li><strong>2. Configure:</strong> Choose how many pages you want per sheet side (e.g. 4 pages/side).
+            </li>
+            <li><strong>3. Review:</strong> Check the visualization above to see how pages will be arranged.</li>
+            <li><strong>4. Download:</strong> Click "Download Imposed PDF" to get your print-ready file.</li>
+            <li><strong>5. Print & Cut:</strong> Print double-sided (duplex), then cut along the dashed lines.
+                Stacks will be in perfect order.</li>
+        </ul>
+    </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js', v=5) }}"></script>
+</body>
+
+</html>
