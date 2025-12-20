@@ -335,51 +335,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // File Upload Handler for Page Counting & Drag/Drop
+    // File Upload Handler
     const fileInput = document.getElementById('pdf_file');
-    const dropZone = document.getElementById('dropZone');
 
-    if (fileInput && dropZone) {
-        // Drag Events
-        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, preventDefaults, false);
-        });
-
-        function preventDefaults(e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        ['dragenter', 'dragover'].forEach(eventName => {
-            dropZone.addEventListener(eventName, highlight, false);
-        });
-
-        ['dragleave', 'drop'].forEach(eventName => {
-            dropZone.addEventListener(eventName, unhighlight, false);
-        });
-
-        function highlight(e) {
-            dropZone.classList.add('drag-over');
-        }
-
-        function unhighlight(e) {
-            dropZone.classList.remove('drag-over');
-        }
-
-        dropZone.addEventListener('drop', handleDrop, false);
-
-        function handleDrop(e) {
-            const dt = e.dataTransfer;
-            const files = dt.files;
-
-            if (files.length > 0 && files[0].type === 'application/pdf') {
-                fileInput.files = files; // Assign to input
-                handleFiles(files[0]);
-            } else {
-                alert("Please drop a valid PDF file.");
-            }
-        }
-
+    if (fileInput) {
         // Standard Change Event
         fileInput.addEventListener('change', function (e) {
             if (this.files && this.files[0]) {
@@ -388,15 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         async function handleFiles(file) {
-            // Update UI to show filename
-            const textEl = dropZone.querySelector('.drop-text');
-            const subtextEl = dropZone.querySelector('.drop-subtext');
-            const iconEl = dropZone.querySelector('.drop-icon');
-
-            dropZone.classList.add('has-file');
-            textEl.textContent = file.name;
-            subtextEl.textContent = "PDF Selected";
-            iconEl.textContent = "📄";
+            // No drop zone to update anymore
 
             const formData = new FormData();
             formData.append('pdf_file', file);
