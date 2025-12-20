@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Generate initial with 0 or placeholder? Let's say 8 pages default for demo
     // But user wants accurate visualization. 
     // We'll leave the default 7 (or 0) in the hidden input but maybe show a message "Upload PDF to visualize"
-    document.getElementById('pageInput').value = 8;
+    document.getElementById('pageInput').value = 0;
     generateImposition();
 
     // Auto-update on ANY change to inputs
