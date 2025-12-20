@@ -192,15 +192,9 @@ function generateImposition() {
         }
     }
 
-    if (inputPages < 1 || inputPages > 500) {
-        // If 0 (initial state), maybe default to something safely or return?
-        // Let's allow 0 but maybe visualization shows empty?
-        // Actually, if it's 0 (no file), we can default to 8 for demo purposes if user hasn't uploaded.
-        if (inputPages === 0) inputPages = 8;
-        else {
-            alert('Please enter input pages between 1 and 500');
-            return;
-        }
+    if (inputPages < 0 || inputPages > 500) {
+        alert('Please enter input pages between 0 and 500');
+        return;
     }
 
     if (pagesPerSheetVal < 1 || pagesPerSheetVal > 128) {
