@@ -2,3 +2,4 @@ Flask
 reportlab
 pypdf
 gunicorn
+cryptography
