@@ -192,6 +192,11 @@ function generateImposition() {
         }
     }
 
+    if (inputPages === 0) {
+        document.querySelector('.visualization').innerHTML = '<div style="text-align:center; padding:40px; color:#666;">👆 Please upload a PDF file above to generate visualization.</div>';
+        return;
+    }
+
     if (inputPages < 0 || inputPages > 500) {
         alert('Please enter input pages between 0 and 500');
         return;
@@ -366,10 +371,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     console.error("Failed to count pages");
                     // Fallback or error
-                    document.querySelector('.visualization').innerHTML = '<div style="text-align:center; padding:40px; color:red;">Could not analyze PDF. Please check file.</div>';
+                    document.querySelector('.visualization').innerHTML = '<div style="text-align:center; padding:40px; color:red;">Could not analyze PDF. Please check file and try again.<br><small>Server responded with error.</small></div>';
                 }
             } catch (err) {
                 console.error("Error uploading file for count:", err);
+                document.querySelector('.visualization').innerHTML = `<div style="text-align:center; padding:40px; color:red;">Connection Error.<br><small>${err.message}</small><br>Please check your internet connection and try again.</div>`;
             }
         }
     }
