@@ -335,35 +335,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // File Upload Handler
+    // Cookie Banner Logic
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+
+    if (banner && acceptBtn) {
+        if (!localStorage.getItem('cookiesAccepted')) {
+            setTimeout(() => {
+                banner.classList.add('show');
+            }, 1000);
+        }
+
+        acceptBtn.addEventListener('click', function () {
+            localStorage.setItem('cookiesAccepted', 'true');
+            banner.classList.remove('show');
+        });
+    }
+
+    // File Upload Handler
     const fileInput = document.getElementById('pdf_file');
 
     if (fileInput) {
-        // Cookie Banner Logic
-        document.addEventListener('DOMContentLoaded', function () {
-            const banner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('accept-cookies');
-
-            if (!localStorage.getItem('cookiesAccepted')) {
-                setTimeout(() => {
-                    banner.classList.add('show');
-                }, 1000);
-            }
-
-            acceptBtn.addEventListener('click', function () {
-                localStorage.setItem('cookiesAccepted', 'true');
-                banner.classList.remove('show');
-            });
-        });
-
-        document.getElementById('pdf_file').addEventListener('change', function (e) {
+        fileInput.addEventListener('change', function (e) {
             if (this.files && this.files[0]) {
                 handleFiles(this.files[0]);
             }
         });
 
         async function handleFiles(file) {
-            // No drop zone to update anymore
-
             const formData = new FormData();
             formData.append('pdf_file', file);
 
@@ -386,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 } else {
                     console.error("Failed to count pages");
-                    // Fallback or error
                     document.querySelector('.visualization').innerHTML = '<div style="text-align:center; padding:40px; color:red;">Could not analyze PDF. Please check file and try again.<br><small>Server responded with error.</small></div>';
                 }
             } catch (err) {
