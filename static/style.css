@@ -872,3 +872,75 @@ body {
 .footer-links a:hover {
     color: white;
 }
+
+@media (max-width: 768px) {
+
+    /* Mobile Navbar */
+    .navbar {
+        flex-direction: column;
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Mobile Hero */
+    .hero {
+        padding: 40px 20px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+    }
+
+    /* Mobile Features */
+    .features-section {
+        padding: 0 20px 40px;
+        gap: 20px;
+    }
+
+    .feature-card {
+        width: 100%;
+    }
+
+    /* Mobile Content */
+    .page-content,
+    .content-section {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .page-content h1 {
+        font-size: 32px;
+    }
+
+    /* Mobile Cookie Banner */
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .cookie-btn {
+        margin-left: 0;
+        width: 100%;
+        max-width: 200px;
+    }
+
+    /* Adjust Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
