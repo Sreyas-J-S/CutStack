@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, send_file
 from imposition import Imposer
 from pypdf import PdfReader
 import io
+import threading
+
+# Global lock to prevent concurrent heavy processing (RAM safety for Free Tier)
+processing_lock = threading.Lock()
 
 app = Flask(__name__)
 
@@ -45,8 +49,10 @@ def process():
         
     # Process the file
     try:
-        imposer = Imposer(file.stream, n_up)
-        output_pdf = imposer.generate()
+        # Use simple blocking lock - effectively a queue
+        with processing_lock:
+            imposer = Imposer(file.stream, n_up)
+            output_pdf = imposer.generate()
         
         return send_file(
             output_pdf,
@@ -68,8 +74,9 @@ def count_pages():
         return {'error': 'No file selected'}, 400
         
     try:
-        reader = PdfReader(file.stream)
-        count = len(reader.pages)
+        with processing_lock:
+            reader = PdfReader(file.stream)
+            count = len(reader.pages)
         return {'pages': count}
     except Exception as e:
         return {'error': str(e)}, 500
