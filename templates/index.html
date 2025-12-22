@@ -1,98 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="jW3KVlChGtStdKpCT1FIkqk47m4stjOu-T067opwdmA" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png', v=3) }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png', v=3) }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png', v=3) }}">
-    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest', v=3) }}">
-    <title>CutStack – Online PDF Editor</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8835918767382393"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=2) }}">
-</head>
+{% block content %}
+<div class="hero">
+    <div class="hero-content">
+        <h1>Simplify Your PDF Printing Workflow</h1>
+        <p class="hero-subtitle">Professional N-Up Imposition & Layout Visualization Tool</p>
+        <p class="hero-description">
+            CutStack is a free, powerful online tool designed for print shops, designers, and enthusiasts.
+            Visualize how your PDF pages will be arranged on a printed sheet (imposition) and generate
+            print-ready files in seconds. Perfect for creating business cards, flyers, and booklets.
+        </p>
+        <a href="#tool-section" class="cta-button">Start Imposing Now</a>
+    </div>
+</div>
 
-<body>
-    <div class="container">
-        <div class="header">
-            <img src="{{ url_for('static', filename='logo.png') }}" alt="CutStack Logo" class="logo">
-            <h1>🎯 CutStack</h1>
-            <p>Interactive Visualization and PDF Generator</p>
-        </div>
+<div class="features-section">
+    <div class="feature-card">
+        <h3>🚀 Instant Visualization</h3>
+        <p>See exactly how your document will be laid out before you print. Our interactive grid shows front and back
+            styling, cut lines, and page ordering.</p>
+    </div>
+    <div class="feature-card">
+        <h3>✂️ Smart Stacking</h3>
+        <p>CutStack arranges pages so that when you cut the stack, the pages are already in the correct order. No more
+            manual collating required.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🔒 Private & Secure</h3>
+        <p>Your files are processed in-memory and never permanently stored on our servers. What you upload stays yours.
+        </p>
+    </div>
+</div>
 
-        <form action="/process" method="post" enctype="multipart/form-data" id="uploadForm">
-            <div class="controls">
-                <div class="control-grid">
-                    <div class="control-item">
-                        <label>Upload PDF File</label>
-                        <input type="file" name="pdf_file" id="pdf_file" class="file-input-styled" accept=".pdf"
-                            required>
-                        <small>Select the document to impose</small>
-                    </div>
+<div id="tool-section" class="tool-wrapper">
+    <div class="header-tool">
+        <h2>PDF Imposition Tool</h2>
+        <p>Upload your file and choose your layout below.</p>
+    </div>
 
-                    <div class="control-item">
-                        <label for="pagesPerSheet">Pages Per Sheet (One Side)</label>
-                        <select id="pagesPerSheet" name="pages_per_sheet_n" class="form-select">
-                            <option value="1">1 (Full Page)</option>
-                            <option value="2">2 (1×2)</option>
-                            <option value="4" selected>4 (2×2)</option>
-                            <option value="6">6 (2×3)</option>
-                            <option value="8">8 (2×4)</option>
-                            <option value="9">9 (3×3)</option>
-                            <option value="10">10 (2×5)</option>
-                            <option value="12">12 (3×4)</option>
-                            <option value="15">15 (3×5)</option>
-                            <option value="16">16 (4×4)</option>
-                            <option value="20">20 (4×5)</option>
-                            <option value="24">24 (4×6)</option>
-                            <option value="25">25 (5×5)</option>
-                            <option value="30">30 (5×6)</option>
-                            <option value="32">32 (4×8)</option>
-                            <option value="36">36 (6×6)</option>
-                        </select>
-                        <!-- Hidden input to send "Pages Per Side" to backend -->
-                        <input type="hidden" name="n_up" id="hidden_n_up" value="4">
-                        <small>Number of pages on front side (N-Up)</small>
-                    </div>
-
-                    <div class="control-item" style="display:none;">
-                        <label for="pageInput">Input Pages (Detected)</label>
-                        <input type="number" id="pageInput" value="0" min="1" max="500" readonly
-                            style="background-color: #f3f4f6; cursor: default;">
-                        <small>Number of pages in uploaded PDF</small>
-                    </div>
-
-                    <div class="control-item">
-                        <label for="layoutMode">Layout Mode</label>
-                        <select id="layoutMode" class="form-select">
-                            <option value="print-safe">Print-Safe (with margins)</option>
-                            <option value="compact">Compact (edge-to-edge)</option>
-                        </select>
-                        <small>Affects cell spacing in visualization</small>
-                    </div>
+    <form action="/process" method="post" enctype="multipart/form-data" id="uploadForm">
+        <div class="controls">
+            <div class="control-grid">
+                <div class="control-item">
+                    <label>Upload PDF File</label>
+                    <input type="file" name="pdf_file" id="pdf_file" class="file-input-styled" accept=".pdf" required>
+                    <small>Select the document to impose</small>
                 </div>
 
-                <div class="preset-buttons" style="margin-top: 20px;">
-                    <button type="button" class="preset-btn" onclick="setConfig(4, 0)">2×2 (4-Up)</button>
-                    <button type="button" class="preset-btn" onclick="setConfig(9, 0)">3×3 (9-Up)</button>
-                    <button type="button" class="preset-btn" onclick="setConfig(16, 0)">4×4 (16-Up)</button>
-                    <button type="button" class="preset-btn" onclick="setConfig(25, 0)">5×5 (25-Up)</button>
-                    <button type="button" class="preset-btn" onclick="setConfig(36, 0)">6×6 (36-Up)</button>
+                <div class="control-item">
+                    <label for="pagesPerSheet">Pages Per Sheet (One Side)</label>
+                    <select id="pagesPerSheet" name="pages_per_sheet_n" class="form-select">
+                        <option value="1">1 (Full Page)</option>
+                        <option value="2">2 (1×2)</option>
+                        <option value="4" selected>4 (2×2)</option>
+                        <option value="6">6 (2×3)</option>
+                        <option value="8">8 (2×4)</option>
+                        <option value="9">9 (3×3)</option>
+                        <option value="10">10 (2×5)</option>
+                        <option value="12">12 (3×4)</option>
+                        <option value="15">15 (3×5)</option>
+                        <option value="16">16 (4×4)</option>
+                        <option value="20">20 (4×5)</option>
+                        <option value="24">24 (4×6)</option>
+                        <option value="25">25 (5×5)</option>
+                        <option value="30">30 (5×6)</option>
+                        <option value="32">32 (4×8)</option>
+                        <option value="36">36 (6×6)</option>
+                    </select>
+                    <!-- Hidden input to send "Pages Per Side" to backend -->
+                    <input type="hidden" name="n_up" id="hidden_n_up" value="4">
+                    <small>Number of pages on front side (N-Up)</small>
+                </div>
+
+                <div class="control-item" style="display:none;">
+                    <label for="pageInput">Input Pages (Detected)</label>
+                    <input type="number" id="pageInput" value="0" min="1" max="500" readonly
+                        style="background-color: #f3f4f6; cursor: default;">
+                    <small>Number of pages in uploaded PDF</small>
+                </div>
+
+                <div class="control-item">
+                    <label for="layoutMode">Layout Mode</label>
+                    <select id="layoutMode" class="form-select">
+                        <option value="print-safe">Print-Safe (with margins)</option>
+                        <option value="compact">Compact (edge-to-edge)</option>
+                    </select>
+                    <small>Affects cell spacing in visualization</small>
                 </div>
             </div>
-    </div>
 
-    <div class="action-buttons">
-        <button type="button" class="generate-btn" onclick="generateImposition()">🚀 Refresh
-            Visualization</button>
-        <button type="submit" class="download-btn">📥 Download Imposed PDF</button>
-    </div>
+            <div class="preset-buttons" style="margin-top: 20px;">
+                <button type="button" class="preset-btn" onclick="setConfig(4, 0)">2×2 (4-Up)</button>
+                <button type="button" class="preset-btn" onclick="setConfig(9, 0)">3×3 (9-Up)</button>
+                <button type="button" class="preset-btn" onclick="setConfig(16, 0)">4×4 (16-Up)</button>
+                <button type="button" class="preset-btn" onclick="setConfig(25, 0)">5×5 (25-Up)</button>
+                <button type="button" class="preset-btn" onclick="setConfig(36, 0)">6×6 (36-Up)</button>
+            </div>
+        </div>
 
-    <div id="pageCountDisplay" class="page-count-display"></div>
-    </div>
+        <div class="action-buttons">
+            <button type="button" class="generate-btn" onclick="generateImposition()">🚀 Refresh Visualization</button>
+            <button type="submit" class="download-btn">📥 Download Imposed PDF</button>
+        </div>
+
+        <div id="pageCountDisplay" class="page-count-display"></div>
     </form>
 
     <div class="stats" id="stats"></div>
@@ -128,17 +139,26 @@
         <h3>📋 Instructions</h3>
         <ul>
             <li><strong>1. Upload PDF:</strong> Select the PDF file you want to process.</li>
-            <li><strong>2. Configure:</strong> Choose how many pages you want per sheet side (e.g. 4 pages/side).
-            </li>
+            <li><strong>2. Configure:</strong> Choose how many pages you want per sheet side (e.g. 4 pages/side).</li>
             <li><strong>3. Review:</strong> Check the visualization above to see how pages will be arranged.</li>
             <li><strong>4. Download:</strong> Click "Download Imposed PDF" to get your print-ready file.</li>
-            <li><strong>5. Print & Cut:</strong> Print double-sided (duplex), then cut along the dashed lines.
-                Stacks will be in perfect order.</li>
+            <li><strong>5. Print & Cut:</strong> Print double-sided (duplex), then cut along the dashed lines. Stacks
+                will be in perfect order.</li>
         </ul>
     </div>
-    </div>
+</div>
 
-    <script src="{{ url_for('static', filename='script.js', v=6) }}"></script>
-</body>
-
-</html>
+<div class="content-section">
+    <h2>How CutStack Works</h2>
+    <p>
+        Sorting pages manually after printing business cards or flyers can be tedious. CutStack solves this by
+        rearranging your PDF pages *before* you print.
+        It uses a technique called "Cut & Stack" imposition.
+    </p>
+    <p>
+        The pages are placed on the sheet in such a way that after you cut the stack of paper, you can literally place
+        one stack on top of the other,
+        and the page numbers will flow sequentially. This saves hours of manual sorting for large print jobs.
+    </p>
+</div>
+{% endblock %}

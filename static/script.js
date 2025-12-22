@@ -338,8 +338,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const fileInput = document.getElementById('pdf_file');
 
     if (fileInput) {
-        // Standard Change Event
-        fileInput.addEventListener('change', function (e) {
+        // Cookie Banner Logic
+        document.addEventListener('DOMContentLoaded', function () {
+            const banner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('accept-cookies');
+
+            if (!localStorage.getItem('cookiesAccepted')) {
+                setTimeout(() => {
+                    banner.classList.add('show');
+                }, 1000);
+            }
+
+            acceptBtn.addEventListener('click', function () {
+                localStorage.setItem('cookiesAccepted', 'true');
+                banner.classList.remove('show');
+            });
+        });
+
+        document.getElementById('pdf_file').addEventListener('change', function (e) {
             if (this.files && this.files[0]) {
                 handleFiles(this.files[0]);
             }

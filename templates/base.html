@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="jW3KVlChGtStdKpCT1FIkqk47m4stjOu-T067opwdmA" />
+    <meta name="description"
+        content="{% block description %}CutStack - The best free online PDF N-up imposition tool and operational logic visualizer.{% endblock %}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='apple-touch-icon.png', v=3) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon-32x32.png', v=3) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='favicon-16x16.png', v=3) }}">
+    <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest', v=3) }}">
+
+    <title>{% block title %}CutStack – Online PDF Editor{% endblock %}</title>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8835918767382393"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=3) }}">
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div class="container main-wrapper">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <a href="/">
+                    <img src="{{ url_for('static', filename='logo.png') }}" alt="CutStack Logo" class="nav-logo-img">
+                    <span class="nav-brand">CutStack</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/privacy" class="nav-link">Privacy Policy</a>
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; 2025 CutStack. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/contact">Contact Us</a>
+                    <a href="/about">About</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="cookie-banner" class="cookie-banner">
+        <p>This website uses cookies to ensure you get the best experience on our website. <a href="/privacy">Learn
+                more</a></p>
+        <button id="accept-cookies" class="cookie-btn">Got it!</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js', v=6) }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>
