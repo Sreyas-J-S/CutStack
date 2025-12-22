@@ -363,6 +363,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         async function handleFiles(file) {
+            // Client-side Limit Check (60 MB)
+            if (file.size > 60 * 1024 * 1024) {
+                alert("⚠️ File too large! Maximum limit is 60MB.");
+                document.getElementById('pdf_file').value = ''; // Clear input
+                return;
+            }
+
             const formData = new FormData();
             formData.append('pdf_file', file);
 

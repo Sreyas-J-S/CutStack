@@ -4,7 +4,15 @@ from pypdf import PdfReader
 import io
 import threading
 
-# Global lock to prevent concurrent heavy processing (RAM safety for Free Tier)
+# LIMITS
+MAX_QUEUE_SIZE = 8
+MAX_FILE_SIZE = 60 * 1024 * 1024  # 60 MB
+
+# Semaphore for the Queue (Waiting Room)
+# We use non-blocking acquire to reject users when full
+queue_semaphore = threading.BoundedSemaphore(value=MAX_QUEUE_SIZE)
+
+# Lock for the Processing (The Chair)
 processing_lock = threading.Lock()
 
 app = Flask(__name__)
@@ -49,10 +57,32 @@ def process():
         
     # Process the file
     try:
-        # Use simple blocking lock - effectively a queue
-        with processing_lock:
-            imposer = Imposer(file.stream, n_up)
-            output_pdf = imposer.generate()
+        # 1. Check File Size (Content-Length)
+        if request.content_length and request.content_length > MAX_FILE_SIZE:
+             return f"File too large. Maximum size is {MAX_FILE_SIZE // (1024*1024)}MB.", 413
+
+        # 2. Try to Enter Queue
+        # acquire(blocking=False) returns False if queue is full
+        if not queue_semaphore.acquire(blocking=False):
+             return "Server is currently full. Please wait a moment and try again.", 503
+
+        try:
+            # 3. entered queue, now wait for processing lock
+            with processing_lock:
+                 # Check actual file size again
+                file.seek(0, 2) # Seek to end
+                size = file.tell()
+                file.seek(0) # Reset
+                
+                if size > MAX_FILE_SIZE:
+                    return f"File too large. Maximum size is {MAX_FILE_SIZE // (1024*1024)}MB.", 413
+
+                # Process
+                imposer = Imposer(file.stream, n_up)
+                output_pdf = imposer.generate()
+        finally:
+            # Always release the queue spot
+            queue_semaphore.release()
         
         return send_file(
             output_pdf,
@@ -74,9 +104,16 @@ def count_pages():
         return {'error': 'No file selected'}, 400
         
     try:
-        with processing_lock:
-            reader = PdfReader(file.stream)
-            count = len(reader.pages)
+        if not queue_semaphore.acquire(blocking=False):
+             return {'error': 'Server is currently full. Please wait a moment.'}, 503
+
+        try:
+             with processing_lock:
+                reader = PdfReader(file.stream)
+                count = len(reader.pages)
+        finally:
+             queue_semaphore.release()
+
         return {'pages': count}
     except Exception as e:
         return {'error': str(e)}, 500
