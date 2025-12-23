@@ -553,6 +553,127 @@ body {
     .header {
         padding-top: 20px;
     }
+
+    /* Mobile Navigation */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 100;
+        margin-left: auto;
+        /* Push to right */
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px 0;
+        background: #333;
+        transition: all 0.3s ease;
+    }
+
+    /* Transform hamburger to X when active */
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Hide links by default on mobile */
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        /* Below navbar */
+        gap: 0;
+        flex-direction: column;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        border-top: 1px solid #eee;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 16px 0;
+    }
+
+    .nav-link {
+        font-size: 18px;
+        display: block;
+        padding: 10px;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        /* Reduced padding */
+    }
+
+    /* Hero Adjustments */
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        /* Smaller font */
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero-buttons .cta-button,
+    .hero-buttons .secondary-button {
+        width: 100%;
+        text-align: center;
+        margin-left: 0 !important;
+        box-sizing: border-box;
+    }
+
+    /* Container Padding */
+    .container {
+        border-radius: 0;
+        /* Full edge on mobile */
+    }
+
+    .content-section,
+    .page-content {
+        padding: 30px 20px;
+        margin: 30px auto;
+    }
+
+    /* Stack features */
+    .feature-card {
+        width: 100%;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Hamburger - hidden on desktop */
+.hamburger {
+    display: none;
 }
 
 /* Navigation */
@@ -564,6 +685,8 @@ body {
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     border-bottom: 1px solid #eee;
+    position: relative;
+    /* Context for mobile menu */
 }
 
 .nav-logo a {
