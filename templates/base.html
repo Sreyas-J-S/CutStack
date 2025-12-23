@@ -15,8 +15,10 @@
 
     <title>{% block title %}CutStack – Online PDF Editor{% endblock %}</title>
 
+    {% if not hide_ads %}
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8835918767382393"
         crossorigin="anonymous"></script>
+    {% endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v=3) }}">
     {% block head %}{% endblock %}
 </head>
@@ -32,6 +34,7 @@
             </div>
             <div class="nav-links">
                 <a href="/" class="nav-link">Home</a>
+                <a href="/resources" class="nav-link">Resources</a>
                 <a href="/about" class="nav-link">About</a>
                 <a href="/contact" class="nav-link">Contact</a>
                 <a href="/privacy" class="nav-link">Privacy Policy</a>
@@ -47,6 +50,7 @@
                     <a href="/privacy">Privacy Policy</a>
                     <a href="/contact">Contact Us</a>
                     <a href="/about">About</a>
+                    <a href="/resources">Resources</a>
                 </div>
             </div>
         </footer>

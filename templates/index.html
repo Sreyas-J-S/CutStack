@@ -3,42 +3,107 @@
 {% block content %}
 <div class="hero">
     <div class="hero-content">
-        <h1>Simplify Your PDF Printing Workflow</h1>
-        <p class="hero-subtitle">Professional N-Up Imposition & Layout Visualization Tool</p>
+        <h1>Professional PDF Imposition & Layout Visualization</h1>
+        <p class="hero-subtitle">The Free, Secure, and Easy Way to Prepare Files for Printing</p>
         <p class="hero-description">
-            CutStack is a free, powerful online tool designed for print shops, designers, and enthusiasts.
-            Visualize how your PDF pages will be arranged on a printed sheet (imposition) and generate
-            print-ready files in seconds. Perfect for creating business cards, flyers, and booklets.
+            CutStack transforms your single-page PDFs into print-ready imposed sheets.
+            Perfect for business cards, flyers, and booklets—no expensive software required.
         </p>
-        <a href="#tool-section" class="cta-button">Start Imposing Now</a>
+        <div class="hero-buttons">
+            <a href="#tool-section" class="cta-button">Jump to Tool</a>
+            <a href="#learn-more" class="secondary-button"
+                style="margin-left: 10px; color: white; border: 1px solid white; padding: 12px 24px; border-radius: 6px; text-decoration: none;">Learn
+                More</a>
+        </div>
     </div>
 </div>
 
-<div class="features-section">
-    <div class="feature-card">
-        <h3>🚀 Instant Visualization</h3>
-        <p>See exactly how your document will be laid out before you print. Our interactive grid shows front and back
-            styling, cut lines, and page ordering.</p>
-    </div>
-    <div class="feature-card">
-        <h3>✂️ Smart Stacking</h3>
-        <p>CutStack arranges pages so that when you cut the stack, the pages are already in the correct order. No more
-            manual collating required.</p>
-    </div>
-    <div class="feature-card">
-        <h3>🔒 Private & Secure</h3>
-        <p>Your files are processed in-memory and never permanently stored on our servers. What you upload stays yours.
+<div id="learn-more" class="content-section" style="padding: 60px 20px; max-width: 1000px; margin: 0 auto;">
+    <div class="info-block" style="margin-bottom: 60px;">
+        <h2>What is CutStack?</h2>
+        <p>
+            CutStack is a specialized online tool designed to bridge the gap between digital design and physical
+            production.
+            When you print professional documents like business cards, postcards, or zines, you typically don't print
+            just one page at a time.
+            Instead, you print multiple copies on a large sheet of paper to save time and reduce waste.
         </p>
+        <p>
+            This process is called <strong>Imposition</strong>. CutStack automates this complex process using a specific
+            technique called "Cut & Stack" (or Stack Imposition).
+            It takes your PDF file, calculates the optimal layout, and rearranges the pages so that after you print and
+            cut the stack,
+            your pages are already in perfect sequential order.
+        </p>
+    </div>
+
+    <div class="info-block" style="margin-bottom: 60px;">
+        <h2>Who is this tool for?</h2>
+        <div class="features-grid"
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
+            <div class="feature-item">
+                <h3>🖨️ Small Print Shops</h3>
+                <p>Automate your prepress workflow without investing in expensive enterprise software like Fiery or
+                    various plugins.</p>
+            </div>
+            <div class="feature-item">
+                <h3>🎨 Graphic Designers</h3>
+                <p>Deliver print-ready files to your clients that are set up correctly for production, saving them time
+                    and money.</p>
+            </div>
+            <div class="feature-item">
+                <h3>🏠 DIY Enthusiasts</h3>
+                <p>Create professional-looking wedding invites, zines, or trading cards from the comfort of your home
+                    printer.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-block" style="margin-bottom: 60px;">
+        <h2>Why "Cut & Stack" Imposition?</h2>
+        <p>
+            Standard imposition simply repeats the same image (Step & Repeat), which leaves you with multiple piles of
+            identical pages that must be sorted manually.
+            CutStack arranges pages <em>sequentially</em> down through the stack.
+        </p>
+        <p>
+            <strong>The Benefit:</strong> You can cut the entire stack of paper at once, pile the resulting small stacks
+            on top of each other,
+            and your 500-page document is immediately ready to bind. It eliminates hours of manual collation.
+        </p>
+    </div>
+
+    <div class="features-section">
+        <div class="feature-card">
+            <h3>🚀 Instant Visualization</h3>
+            <p>See exactly how your document will be laid out before you print. Our interactive grid shows front and
+                back
+                styling, cut lines, and page ordering.</p>
+        </div>
+        <div class="feature-card">
+            <h3>✂️ Smart Stacking</h3>
+            <p>CutStack arranges pages so that when you cut the stack, the pages are already in the correct order. No
+                more
+                manual collating required.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 Private & Secure</h3>
+            <p>Your files are processed in-memory and never permanently stored on our servers. What you upload stays
+                yours.
+            </p>
+        </div>
     </div>
 </div>
 
-<div id="tool-section" class="tool-wrapper">
-    <div class="header-tool">
-        <h2>PDF Imposition Tool</h2>
-        <p>Upload your file and choose your layout below.</p>
+<div id="tool-section" class="tool-wrapper"
+    style="background: #f8fafc; padding: 60px 20px; border-top: 1px solid #e2e8f0;">
+    <div class="header-tool" style="text-align: center; margin-bottom: 40px;">
+        <h2>Start Imposing Your PDF</h2>
+        <p>Upload your file below to generate your print-ready layout.</p>
     </div>
 
-    <form action="/process" method="post" enctype="multipart/form-data" id="uploadForm">
+    <form action="/process" method="post" enctype="multipart/form-data" id="uploadForm"
+        style="max-width: 800px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
         <div class="controls">
             <div class="control-grid">
                 <div class="control-item">
@@ -134,31 +199,31 @@
             <div class="legend-text">Blank Padding</div>
         </div>
     </div>
-
-    <div class="info-panel">
-        <h3>📋 Instructions</h3>
-        <ul>
-            <li><strong>1. Upload PDF:</strong> Select the PDF file you want to process.</li>
-            <li><strong>2. Configure:</strong> Choose how many pages you want per sheet side (e.g. 4 pages/side).</li>
-            <li><strong>3. Review:</strong> Check the visualization above to see how pages will be arranged.</li>
-            <li><strong>4. Download:</strong> Click "Download Imposed PDF" to get your print-ready file.</li>
-            <li><strong>5. Print & Cut:</strong> Print double-sided (duplex), then cut along the dashed lines. Stacks
-                will be in perfect order.</li>
-        </ul>
-    </div>
 </div>
 
-<div class="content-section">
-    <h2>How CutStack Works</h2>
-    <p>
-        Sorting pages manually after printing business cards or flyers can be tedious. CutStack solves this by
-        rearranging your PDF pages *before* you print.
-        It uses a technique called "Cut & Stack" imposition.
-    </p>
-    <p>
-        The pages are placed on the sheet in such a way that after you cut the stack of paper, you can literally place
-        one stack on top of the other,
-        and the page numbers will flow sequentially. This saves hours of manual sorting for large print jobs.
-    </p>
+<div class="content-section faq-section" style="max-width: 800px; margin: 60px auto;">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-item" style="margin-bottom: 20px;">
+        <h3>Is my data safe?</h3>
+        <p>Absolutely. We prioritize your privacy. Files are processed entirely in-memory and are immediately discarded
+            after processing. We do not store, view, or share your documents.</p>
+    </div>
+
+    <div class="faq-item" style="margin-bottom: 20px;">
+        <h3>How much does it cost?</h3>
+        <p>CutStack is currently 100% free to use. We rely on unintrusive advertising to keep our servers running.</p>
+    </div>
+
+    <div class="faq-item" style="margin-bottom: 20px;">
+        <h3>What if my PDF has different page sizes?</h3>
+        <p>We recommend standardizing your page sizes before upload. However, our engine will attempt to center your
+            pages within the imposition grid.</p>
+    </div>
+
+    <div class="faq-item" style="margin-bottom: 20px;">
+        <h3>Do I need to install anything?</h3>
+        <p>No. CutStack is entirely web-based. You can access it from any device with a modern web browser.</p>
+    </div>
 </div>
 {% endblock %}

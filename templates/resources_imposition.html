@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}What is N-Up Imposition? - CutStack Guide{% endblock %}
+{% block description %}A comprehensive guide to N-Up imposition, Cut & Stack layouts, and efficient print workflows.{%
+endblock %}
+
+{% block content %}
+<div class="page-content" style="max-width: 800px;">
+    <a href="/resources" style="display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none;">&larr;
+        Back to Resources</a>
+
+    <h1>What is N-Up Imposition?</h1>
+    <p>If you've ever tried to print business cards or flyers at home, you know the struggle: you print one page, then
+        another, and you waste a lot of paper. Professional printers solve this with a technique called
+        <strong>Imposition</strong>.</p>
+
+    <h2>The Basics of "N-Up"</h2>
+    <p>"N-Up" simply refers to placing <em>N</em> number of pages on a single side of a sheet of paper.
+    <ul>
+        <li><strong>2-Up:</strong> Two pages per side (common for half-sheet flyers).</li>
+        <li><strong>4-Up:</strong> Four pages per side (often used for postcards).</li>
+        <li><strong>10-Up:</strong> Ten pages per side (standard business card layout).</li>
+    </ul>
+    </p>
+
+    <h2>Why Use Imposition?</h2>
+    <ol>
+        <li><strong>Save Paper:</strong> Printing multiple items on a single large sheet drastically reduces waste.</li>
+        <li><strong>Save Time:</strong> Printing 100 business cards 10-Up only requires 10 sheets of paper, versus 100
+            sheets.</li>
+        <li><strong>Professional Finish:</strong> Proper imposition adds "bleed" and crop marks, ensuring your final cut
+            looks clean and edge-to-edge.</li>
+    </ol>
+
+    <h2>The "Cut & Stack" Method</h2>
+    <p>This is where CutStack shines. Most simple imposition tools just repeat the same page 4 times on a sheet. That's
+        fine for a single flyer, but what if you have a 100-page PDF document?</p>
+
+    <p>If you use standard "step-and-repeat," you'll end up with 4 piles of unsorted pages. You would have to manually
+        sort them: A1, B1, C1, D1... it's a nightmare.</p>
+
+    <p><strong>Cut & Stack (or Stack Imposition)</strong> arranges the pages intelligently. It calculates the total
+        number of sheets needed and places pages so that when you cut the stack vertically:</p>
+    <ul>
+        <li>The first stack contains pages 1-25.</li>
+        <li>The second stack contains pages 26-50.</li>
+        <li>The third stack contains pages 51-75.</li>
+        <li>The fourth stack contains pages 76-100.</li>
+    </ul>
+    <p>You literally just stack the piles on top of each other, and your entire document is in order. Zero manual
+        sorting required.</p>
+</div>
+{% endblock %}

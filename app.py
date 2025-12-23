@@ -33,6 +33,18 @@ def contact():
 def privacy():
     return render_template('privacy.html')
 
+@app.route('/resources')
+def resources_hub():
+    return render_template('resources_hub.html')
+
+@app.route('/resources/what-is-imposition')
+def resources_imposition():
+    return render_template('resources_imposition.html')
+
+@app.route('/resources/printing-guide')
+def resources_printing():
+    return render_template('resources_printing.html')
+
 @app.route('/robots.txt')
 def robots():
     return send_file('static/robots.txt')

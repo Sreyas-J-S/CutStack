@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Printing & Cutting Guide - CutStack{% endblock %}
+{% block description %}How to print, handle duplex alignment, and cut your imposed PDF stacks correctly.{% endblock %}
+
+{% block content %}
+<div class="page-content" style="max-width: 800px;">
+    <a href="/resources" style="display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none;">&larr;
+        Back to Resources</a>
+
+    <h1>Printing & Cutting Guide</h1>
+    <p>Creating the imposed PDF file is only half the battle. To get professional results, you need to print and cut it
+        correctly. Here is our step-by-step guide.</p>
+
+    <h2>1. Printing Setup</h2>
+    <p>When you open your imposed PDF in Adobe Acrobat or your browser's print dialog:</p>
+    <ul>
+        <li><strong>Scale:</strong> Always select "Actual Size" or "Scale 100%". Do <strong>not</strong> select "Fit to
+            Page," or your margins will be incorrect.</li>
+        <li><strong>Two-Sided (Duplex):</strong> Select "Print on both sides".</li>
+        <li><strong>Flip Edge:</strong> Usually, you want to "Flip on Long Edge" (standard book orientation).</li>
+    </ul>
+
+    <h2>2. Handling Alignment Issues</h2>
+    <p>Home printers naturally have a "mechanical shift"—the paper might shift 1-2mm as it travels through the rollers.
+        This creates slight misalignment between the front and back sides.</p>
+
+    <p><strong>Tips to minimize this:</strong></p>
+    <ul>
+        <li>Use thicker paper (24lb or 32lb stock) which feeds more consistently.</li>
+        <li>In CutStack, use the "Print-Safe" layout mode, which adds generous margins between cards, making slight cuts
+            less noticeable.</li>
+    </ul>
+
+    <h2>3. The Cutting Process</h2>
+    <p>Once you have your stack of printed sheets:</p>
+    <ol>
+        <li><strong>Keep them stacked:</strong> Do not shuffle the sheets. Keep them in the order they came out of the
+            printer.</li>
+        <li><strong>Cut Columns First:</strong> Use a guillotine paper cutter. Cut along the vertical center lines
+            first.</li>
+        <li><strong>Stack Columns:</strong> Take the right-hand stack and place it <em>under</em> the left-hand stack
+            (or vice versa, depending on the imposition order—check your page numbers).</li>
+        <li><strong>Cut Rows:</strong> Now cut the horizontal lines of your combined stack.</li>
+    </ol>
+    <p>If done correctly, you will have a perfectly ordered deck of cards or pages!</p>
+</div>
+{% endblock %}
