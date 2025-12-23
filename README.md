@@ -11,6 +11,21 @@ CutStack is a Flask-based web application designed to help with PDF imposition. 
 -   **Drag & Drop Interface**: Simple and intuitive UI for uploading files.
 -   **Sequential Layout**: Handles front and back side imposition order for correct stacking.
 
+## Demo & Mobile Responsiveness
+
+CutStack checks for mobile responsiveness to ensure a smooth experience on all devices.
+
+### Mobile Menu & Navigation
+![Mobile Menu Demo](static/assets/mobile_menu_demo.webp)
+*Top: Functional hamburger menu and smooth navigation toggle.*
+
+### Responsive Layout
+![Mobile Layout Demo](static/assets/mobile_view_demo.webp)
+*Top: Content stacking and responsive typography.*
+
+![Mobile Menu Screenshot](static/assets/mobile_menu_screenshot.png)
+*Snapshot of the accessible mobile navigation.*
+
 ## Prerequisites
 
 -   Python 3.8+
