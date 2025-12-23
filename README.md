@@ -19,13 +19,6 @@ CutStack checks for mobile responsiveness to ensure a smooth experience on all d
 ![Mobile Menu Demo](static/assets/mobile_menu_demo.webp)
 *Top: Functional hamburger menu and smooth navigation toggle.*
 
-### Responsive Layout
-![Mobile Layout Demo](static/assets/mobile_view_demo.webp)
-*Top: Content stacking and responsive typography.*
-
-![Mobile Menu Screenshot](static/assets/mobile_menu_screenshot.png)
-*Snapshot of the accessible mobile navigation.*
-
 ## Prerequisites
 
 -   Python 3.8+
