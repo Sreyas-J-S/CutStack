@@ -33,6 +33,10 @@ def contact():
 def privacy():
     return render_template('privacy.html')
 
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
 @app.route('/resources')
 def resources_hub():
     return render_template('resources_hub.html')
