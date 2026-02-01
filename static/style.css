@@ -567,76 +567,7 @@ body {
         padding-top: 20px;
     }
 
-    /* Mobile Navigation */
-    .hamburger {
-        display: block;
-        cursor: pointer;
-        z-index: 1001;
-        margin-left: auto;
-        /* Push to right */
-    }
 
-    .hamburger span {
-        display: block;
-        width: 25px;
-        height: 3px;
-        margin: 5px 0;
-        background: #333;
-        transition: all 0.3s ease;
-    }
-
-    /* Transform hamburger to X when active */
-    .hamburger.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    /* Hide links by default on mobile */
-    .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        /* Below navbar */
-        gap: 0;
-        flex-direction: column;
-        background-color: white;
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
-        border-top: 1px solid #eee;
-        z-index: 1000;
-        /* Ensure above hero content */
-        overflow-y: auto;
-        max-height: 80vh;
-    }
-
-    .nav-links.active {
-        left: 0;
-    }
-
-    .nav-item {
-        margin: 16px 0;
-    }
-
-    .nav-link {
-        font-size: 18px;
-        display: block;
-        padding: 10px;
-    }
-
-    .navbar {
-        padding: 15px 20px;
-        /* Reduced padding */
-    }
 
     /* Hero Adjustments */
     .hero {
@@ -708,54 +639,7 @@ body {
     }
 }
 
-/* Navigation */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    border-bottom: 1px solid #eee;
-    position: relative;
-    z-index: 1000;
-    /* Context for mobile menu */
-}
 
-.nav-logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    gap: 12px;
-}
-
-.nav-logo-img {
-    height: 40px;
-    width: auto;
-}
-
-.nav-brand {
-    font-size: 24px;
-    font-weight: 800;
-    color: #1a202c;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #4a5568;
-    font-weight: 600;
-    font-size: 16px;
-    transition: color 0.2s;
-}
-
-.nav-link:hover {
-    color: #667eea;
-}
 
 /* Hero Section */
 .hero {
@@ -946,104 +830,16 @@ body {
     margin-bottom: 20px;
 }
 
-/* Footer */
-.site-footer {
-    background: #1a202c;
-    color: white;
-    padding: 40px 0;
-    margin-top: 60px;
-}
 
 
-/* Cookie Banner */
-.cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1a202c;
-    color: white;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    transform: translateY(100%);
-    transition: transform 0.3s ease-in-out;
-}
 
-.cookie-banner.show {
-    transform: translateY(0);
-}
 
-.cookie-banner p {
-    margin: 0;
-    font-size: 14px;
-}
 
-.cookie-banner a {
-    color: #a78bfa;
-    text-decoration: underline;
-}
 
-.cookie-btn {
-    background: #10b981;
-    color: white;
-    border: none;
-    padding: 8px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 700;
-    margin-left: 20px;
-}
-
-.cookie-btn:hover {
-    background: #059669;
-}
-
-/* Footer Content */
-.footer-content {
-    max-width: 1600px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.footer-links {
-    display: flex;
-    gap: 20px;
-}
-
-.footer-links a {
-    color: #a0aec0;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: white;
-}
 
 @media (max-width: 768px) {
 
-    /* Mobile Navbar */
-    .navbar {
-        flex-direction: column;
-        padding: 15px;
-        gap: 15px;
-    }
 
-    .nav-links {
-        gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-    }
 
     /* Mobile Hero */
     .hero {
@@ -1085,26 +881,5 @@ body {
 
     .tool-wrapper {
         padding: 20px 10px;
-    }
-
-    /* Mobile Cookie Banner */
-    .cookie-banner {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-        padding: 20px;
-    }
-
-    .cookie-btn {
-        margin-left: 0;
-        width: 100%;
-        max-width: 200px;
-    }
-
-    /* Adjust Footer */
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
     }
 }
